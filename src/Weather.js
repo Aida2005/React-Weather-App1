@@ -3,24 +3,23 @@ import axios from "axios";
 import "./Weather.css";
 
 
-export default function Weather() {
-    const [ready, setReady] = useState(false);
-    const [weatherData, SetWeatherData]= useState({});
-    function handleResponse(response){
-        console.log(response.data);
-        SetWeatherData({
-        temprature:response.data.main.temp,
-        humadity:response.data.main.humadity,
-        data:"Wednesday 07:00",
-        description:response.data.Weather[0].description,
-        iconUrl:"https://ssl.gstatic.com/onebox/weather/64/sunny.png",
-        wind:response.data.wind.speed,
-        city: response.data.name
-      });
-        setReady(true);
-    }
+export default function Weather(props) {
+    const [weatherData, SetWeatherData]= useState({ready:false});
+   function handleResponse(response) {
+   SetWeatherData({
+      ready: true,
+      temperature:response.data.main.temp,
+      humidity:response.data.main.humidity,
+      data:"Wednesday 07:00",
+      description: response.data.weather[0].description,
+      wind: response.data.wind.speed,
+      city:response.name,
+      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png",
+      
+    });
+  }
 
-    if (ready){
+    if (weatherData.ready){
          return (
     <div className="Weather">
           <form >
@@ -67,7 +66,7 @@ export default function Weather() {
             <div className="col-6">
                 <ul>
                    <li> Precipitation: 0%</li>
-                  <li>Humadity;{weatherData.humadity} %</li>
+                  <li>Humadity;{weatherData.humidity} %</li>
                    <li>Wind:{weatherData.wind}km/h</li>
                 </ul>
             </div>
@@ -75,11 +74,9 @@ export default function Weather() {
        </div>
     );
     } else{
-           const apiKey="2a805289886a6cb0a6fa9785663fff97";
-    let city="New York"
-     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+       const apiKey="2a805289886a6cb0a6fa9785663fff97";
+     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
     return "Loading...";
 }
 }
-    
