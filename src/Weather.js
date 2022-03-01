@@ -4,17 +4,18 @@ import "./Weather.css";
 
 
 export default function Weather(props) {
-    const [weatherData, SetWeatherData]= useState({ready:false});
+    const [weatherData, setWeatherData]= useState({ ready:false });
    function handleResponse(response) {
-   SetWeatherData({
+     console.log(response.data);
+   setWeatherData({
       ready: true,
       temperature:response.data.main.temp,
       humidity:response.data.main.humidity,
       data:"Wednesday 07:00",
       description: response.data.weather[0].description,
       wind: response.data.wind.speed,
-      city:response.name,
-      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png",
+      city:response.data.name,
+      iconUrl: `https://ssl.gstatic.com/onebox/weather/64/cloudy.png`,
       
     });
   }
@@ -42,10 +43,11 @@ export default function Weather(props) {
             </div>
           </div>
         </form>
-        <h1>New York</h1>
-        <ul>
-            <li> {weatherData}</li>
-            <li className="text-capitalize">{weatherData.description}</li>
+        <h1 className="city">{weatherData.city}</h1>
+        <ul className="weatherData.description">
+            <li className="text-capitalize">
+              Description:{weatherData.description}
+            </li>
         </ul>
         <div className="row mt-5">
             <div className="col-6">
@@ -74,8 +76,8 @@ export default function Weather(props) {
        </div>
     );
     } else{
-       const apiKey="2a805289886a6cb0a6fa9785663fff97";
-     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+       const apiKey="ec5f0024d633f887b7df9819db0b1321";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
     return "Loading...";
 }
