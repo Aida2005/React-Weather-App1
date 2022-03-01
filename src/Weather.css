@@ -1,9 +1,9 @@
 .Weather {
   font-family: arial, sans-serif;
-  border: 1px solid #dadde1;
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 10px;
   color: rgb(135, 135, 135);
+  background: url("https://i.pinimg.com/236x/96/c3/72/96c372bbc2a4326cd4e88f34a6c48303.jpg");
 }
 
 .Weather h1 {
@@ -11,6 +11,7 @@
   font-weight: 100;
   margin: 20px 0 0 0;
   line-height: 29px;
+  color: black;
 }
 
 .Weather ul {
@@ -23,12 +24,13 @@
   font-weight: 100;
   line-height: 19px;
   list-style: none;
+  color: black;
 }
 .Weather img {
   height: 64px;
   width: 64px;
   margin-right: 10px;
-  margin-bottom: 35px;
+  margin-bottom: 10px;
   display: inline-block;
 }
 
