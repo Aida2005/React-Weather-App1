@@ -3,6 +3,13 @@
 }
 
 .WeatherForecast-temperature-min {
-  opacity: 0.6;
+  color: black;
   margin-left: 5px;
+}
+.WeatherForecast-temperature-max {
+  color: black;
+  margin-left: 5px;
+}
+.WeatherForecast-day {
+  color: black;
 }
