@@ -3,7 +3,7 @@
   padding: 16px;
   border-radius: 10px;
   color: rgb(135, 135, 135);
-  background: url("https://i.pinimg.com/564x/ed/eb/59/edeb59cd554c95645fbca777424e3c3c.jpg");
+  border: 1px solid;
 }
 
 .Weather h1 {
